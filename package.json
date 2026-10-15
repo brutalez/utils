@@ -82,6 +82,7 @@
     "prepublishOnly": "npm run build && npm test && npm run typecheck"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^7.0.1",
     "@types/node": "^26.6.5",
     "eslint": "^9.0.0",
     "eslint-config-prettier": "^10.0.0",
