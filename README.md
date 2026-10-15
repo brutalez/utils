@@ -1,9 +1,9 @@
-# @brutalez/toolkit
+# @brutalez/utils
 
 A small, typed, zero-dependency collection of everyday TypeScript utilities, grouped into short namespaces that are easy to discover and easy to import.
 
 ```ts
-import { Str, Arr, Dur } from "@brutalez/toolkit"
+import { Str, Arr, Dur } from "@brutalez/utils"
 
 Str.slugify("Héllo Wörld!") // "hello-world"
 Arr.chunk([1, 2, 3, 4, 5], 2) // [[1, 2], [3, 4], [5]]
@@ -23,7 +23,7 @@ Dur.formatDuration(3725000) // "1h 2m 5s"
 ## Installation
 
 ```bash
-pnpm add @brutalez/toolkit
+pnpm add @brutalez/utils
 ```
 
 The library is written in TypeScript and targets modern runtimes (ES2020 or later).
@@ -33,7 +33,7 @@ The library is written in TypeScript and targets modern runtimes (ES2020 or late
 ### Import a single module
 
 ```ts
-import { Str } from "@brutalez/toolkit/string"
+import { Str } from "@brutalez/utils/string"
 
 Str.clean("  hello   world  ") // "hello world"
 Str.toCamelCase("user_first-name") // "userFirstName"
@@ -43,13 +43,13 @@ Str.truncate("Long sentence here", 10) // "Long sent…"
 ### Import from the root
 
 ```ts
-import { Str, Num, Arr, Dt, Obj, Json, Dur } from "@brutalez/toolkit"
+import { Str, Num, Arr, Dt, Obj, Json, Dur } from "@brutalez/utils"
 ```
 
 ### Use several modules together
 
 ```ts
-import { Arr, Num, Obj } from "@brutalez/toolkit"
+import { Arr, Num, Obj } from "@brutalez/utils"
 
 const orders = [
   { id: 1, status: "paid", total: 120.5 },
@@ -69,15 +69,15 @@ const publicOrders = orders.map((order) => Obj.omit(order, ["total"]))
 
 ## Modules
 
-| Namespace | Import path                  | Functions                                                                                                                       |
-| --------- | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| `Str`     | `@brutalez/toolkit/string`   | `clean`, `truncate`, `capitalize`, `reverse`, `toCamelCase`, `toPascalCase`, `toSnakeCase`, `toKebabCase`, `slugify`, `isBlank` |
-| `Num`     | `@brutalez/toolkit/number`   | `clamp`, `inRange`, `roundTo`, `formatDigits`, `sum`                                                                            |
-| `Arr`     | `@brutalez/toolkit/array`    | `chunk`, `groupBy`, `partition`, `uniqueBy`, `shuffle`                                                                          |
-| `Dt`      | `@brutalez/toolkit/date`     | `isWithinRange`, `isSameDay`, `overlaps`, `addDays`                                                                             |
-| `Obj`     | `@brutalez/toolkit/object`   | `getPath`, `pick`, `omit`, `isEqual`, `diff`                                                                                    |
-| `Json`    | `@brutalez/toolkit/json`     | `safeParse`, `safeStringify`                                                                                                    |
-| `Dur`     | `@brutalez/toolkit/duration` | `formatDuration`, `parseDuration`                                                                                               |
+| Namespace | Import path                | Functions                                                                                                                       |
+| --------- | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| `Str`     | `@brutalez/utils/string`   | `clean`, `truncate`, `capitalize`, `reverse`, `toCamelCase`, `toPascalCase`, `toSnakeCase`, `toKebabCase`, `slugify`, `isBlank` |
+| `Num`     | `@brutalez/utils/number`   | `clamp`, `inRange`, `roundTo`, `formatDigits`, `sum`                                                                            |
+| `Arr`     | `@brutalez/utils/array`    | `chunk`, `groupBy`, `partition`, `uniqueBy`, `shuffle`                                                                          |
+| `Dt`      | `@brutalez/utils/date`     | `isWithinRange`, `isSameDay`, `overlaps`, `addDays`                                                                             |
+| `Obj`     | `@brutalez/utils/object`   | `getPath`, `pick`, `omit`, `isEqual`, `diff`                                                                                    |
+| `Json`    | `@brutalez/utils/json`     | `safeParse`, `safeStringify`                                                                                                    |
+| `Dur`     | `@brutalez/utils/duration` | `formatDuration`, `parseDuration`                                                                                               |
 
 ## API Reference
 
@@ -238,8 +238,8 @@ If you copy a source file directly into a project, make sure your tooling suppor
 Clone the repository and install dependencies.
 
 ```bash
-git clone https://github.com/brutalez/toolkit.git
-cd toolkit
+git clone https://github.com/brutalez/utils.git
+cd utils
 pnpm install
 ```
 
