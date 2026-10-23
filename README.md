@@ -13,7 +13,7 @@ Dur.formatDuration(3725000) // "1h 2m 5s"
 ## Features
 
 - One namespace per topic: type `Str.` and your editor lists every string helper
-- Seven modules covering strings, numbers, arrays, dates, objects, JSON, and durations
+- Nine modules covering strings, numbers, arrays, dates, objects, JSON, durations, money, and phone numbers
 - Fully typed, with generics that keep your item and key types intact
 - Safe helpers that return a fallback instead of throwing
 - JSDoc with a runnable `@example` on every function, visible on hover in your editor
@@ -78,6 +78,8 @@ const publicOrders = orders.map((order) => Obj.omit(order, ["total"]))
 | `Obj`     | `@brutalez/utils/object`   | `getPath`, `pick`, `omit`, `isEqual`, `diff`                                                                                    |
 | `Json`    | `@brutalez/utils/json`     | `safeParse`, `safeStringify`                                                                                                    |
 | `Dur`     | `@brutalez/utils/duration` | `formatDuration`, `parseDuration`                                                                                               |
+| `Money`   | `@brutalez/utils/money`    | `CURRENCIES`, `findCurrency`, `normalizeMoney`, `formatMoney`                                                                   |
+| `Phone`   | `@brutalez/utils/phone`    | `COUNTRY_CODES`, `DIAL_CODES`, `groupDigits`, `normalizePhone`, `formatPhone`, `mask`                                           |
 
 ## API Reference
 
@@ -218,6 +220,65 @@ Dur.parseDuration("abc") // undefined
 ```
 
 Supported units are `d`, `h`, `m`, `s`, and `ms`. Decimals are allowed when parsing.
+
+### `Money`
+
+Helpers for money inputs: normalize what the user types, then format it for display.
+
+| Function                             | Description                                                                     |
+| ------------------------------------ | ------------------------------------------------------------------------------- |
+| `CURRENCIES`                         | List of currencies with `id`, `code`, `symbol`, `name`, `flag`, and `decimals`  |
+| `findCurrency(id)`                   | Returns the currency for an ISO code, `undefined` if not found (case-sensitive) |
+| `normalizeMoney(raw, decimals?)`     | Keeps digits and one dot, cuts extra fraction digits (default `2`), no rounding |
+| `formatMoney(normalized, decimals?)` | Adds thousand separators to a normalized string, keeps a trailing dot           |
+
+```ts
+Money.findCurrency("IDR")?.symbol // "Rp"
+
+Money.normalizeMoney("$1,234.56") // "1234.56"
+Money.normalizeMoney("1.239") // "1.23"
+Money.normalizeMoney("1234.56", 0) // "1234"
+Money.normalizeMoney("1234.") // "1234." so the user can keep typing
+
+Money.formatMoney("1234567.5") // "1,234,567.5"
+Money.formatMoney("1234.") // "1,234."
+Money.formatMoney("1234.56", 0) // "1,234"
+
+const idr = Money.findCurrency("IDR")!
+Money.formatMoney(
+  Money.normalizeMoney("1500000.75", idr.decimals),
+  idr.decimals,
+)
+// "1,500,000"
+```
+
+Currencies without a minor unit (`IDR`, `JPY`, `KRW`) use `decimals: 0`. `normalizeMoney` treats `.` as the decimal point, so it does not parse dot-grouped input like `1.500.000`.
+
+### `Phone`
+
+Helpers for phone inputs: clean, group, and mask national numbers. Numbers are handled without the dial code.
+
+| Function                               | Description                                                              |
+| -------------------------------------- | ------------------------------------------------------------------------ |
+| `COUNTRY_CODES`                        | Country list with `id`, `code` (e.g. `"+62"`), `name`, and `flag`        |
+| `DIAL_CODES`                           | Map of country code to dial code digits, e.g. `ID` → `"62"`              |
+| `groupDigits(digits, country, sep?)`   | Splits digits using the country's pattern (default separator is a space) |
+| `normalizePhone(input)`                | Keeps digits only and removes one leading `0`                            |
+| `formatPhone(phone, country?)`         | Groups digits with dashes (default country `"ID"`)                       |
+| `mask(phone, country?, visibleCount?)` | Hides all but the last `visibleCount` digits (default `4`), grouped      |
+
+```ts
+Phone.normalizePhone("0812-3456-7890") // "81234567890"
+
+Phone.groupDigits("5551234567", "US") // "555 123 4567"
+Phone.formatPhone("81234567890") // "812-3456-7890"
+Phone.formatPhone("5551234567", "US") // "555-123-4567"
+
+Phone.mask("81234567890") // "***-****-7890"
+Phone.mask("5551234567", "US", 2) // "***-***-**67"
+```
+
+When more than one pattern has the same digit count, the first one wins. If no pattern matches (or the country has none), the digits come back ungrouped. Run `normalizePhone` before `formatPhone`, because a leading `0` changes the digit count.
 
 ## Why Namespaces
 
