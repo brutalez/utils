@@ -1,7 +1,7 @@
 {
   "name": "@brutalez/utils",
-  "version": "1.0.0",
-  "description": "Small, typed, zero-dependency TypeScript utilities for strings, numbers, arrays, dates, objects, JSON, and durations",
+  "version": "1.1.0",
+  "description": "Small, typed, zero-dependency TypeScript utilities for strings, numbers, arrays, dates, objects, JSON, durations, phone, and money",
   "keywords": [
     "typescript",
     "utils",
@@ -11,7 +11,9 @@
     "date",
     "object",
     "json",
-    "duration"
+    "duration",
+    "money",
+    "phone"
   ],
   "license": "MIT",
   "publishConfig": {
@@ -66,6 +68,14 @@
     "./duration": {
       "types": "./dist/duration.d.ts",
       "import": "./dist/duration.js"
+    },
+    "./money": {
+      "types": "./dist/money.d.ts",
+      "import": "./dist/money.js"
+    },
+    "./phone": {
+      "types": "./dist/phone.d.ts",
+      "import": "./dist/phone.js"
     },
     "./package.json": "./package.json"
   },
