@@ -8,7 +8,17 @@ describe("Index", () => {
     context("when importing the package entry", () => {
       it("should export every namespace", () => {
         expect(Object.keys(lib).sort()).toEqual(
-          ["Arr", "Dt", "Dur", "Json", "Num", "Obj", "Str"].sort(),
+          [
+            "Arr",
+            "Dt",
+            "Dur",
+            "Json",
+            "Money",
+            "Num",
+            "Obj",
+            "Phone",
+            "Str",
+          ].sort(),
         )
       })
 
@@ -22,6 +32,8 @@ describe("Index", () => {
         expect(lib.Obj.pick({ a: 1, b: 2 }, ["a"])).toEqual({ a: 1 })
         expect(lib.Json.safeParse("{")).toBeUndefined()
         expect(lib.Dur.formatDuration(1000)).toBe("1s")
+        expect(lib.Money.normalizeMoney("$1,234.56")).toBe("1234.56")
+        expect(lib.Phone.normalizePhone("0812-3456-7890")).toBe("81234567890")
       })
     })
   })
