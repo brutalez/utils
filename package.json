@@ -1,6 +1,6 @@
 {
   "name": "@brutalez/utils",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Small, typed, zero-dependency TypeScript utilities for strings, numbers, arrays, dates, objects, JSON, durations, phone, and money",
   "keywords": [
     "typescript",
