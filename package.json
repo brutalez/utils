@@ -1,6 +1,6 @@
 {
   "name": "@brutalez/utils",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Small, typed, zero-dependency TypeScript utilities for strings, numbers, arrays, dates, objects, JSON, durations, phone, and money",
   "keywords": [
     "typescript",
@@ -39,43 +39,53 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
     },
     "./string": {
       "types": "./dist/string.d.ts",
-      "import": "./dist/string.js"
+      "import": "./dist/string.js",
+      "default": "./dist/string.js"
     },
     "./number": {
       "types": "./dist/number.d.ts",
-      "import": "./dist/number.js"
+      "import": "./dist/number.js",
+      "default": "./dist/number.js"
     },
     "./array": {
       "types": "./dist/array.d.ts",
-      "import": "./dist/array.js"
+      "import": "./dist/array.js",
+      "default": "./dist/array.js"
     },
     "./date": {
       "types": "./dist/date.d.ts",
-      "import": "./dist/date.js"
+      "import": "./dist/date.js",
+      "default": "./dist/date.js"
     },
     "./object": {
       "types": "./dist/object.d.ts",
-      "import": "./dist/object.js"
+      "import": "./dist/object.js",
+      "default": "./dist/object.js"
     },
     "./json": {
       "types": "./dist/json.d.ts",
-      "import": "./dist/json.js"
+      "import": "./dist/json.js",
+      "default": "./dist/json.js"
     },
     "./duration": {
       "types": "./dist/duration.d.ts",
-      "import": "./dist/duration.js"
-    },
-    "./money": {
-      "types": "./dist/money.d.ts",
-      "import": "./dist/money.js"
+      "import": "./dist/duration.js",
+      "default": "./dist/duration.js"
     },
     "./phone": {
       "types": "./dist/phone.d.ts",
-      "import": "./dist/phone.js"
+      "import": "./dist/phone.js",
+      "default": "./dist/phone.js"
+    },
+    "./money": {
+      "types": "./dist/money.d.ts",
+      "import": "./dist/money.js",
+      "default": "./dist/money.js"
     },
     "./package.json": "./package.json"
   },
