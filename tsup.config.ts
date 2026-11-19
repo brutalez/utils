@@ -10,6 +10,8 @@ export default defineConfig({
     "src/object.ts",
     "src/json.ts",
     "src/duration.ts",
+    "src/phone.ts",
+    "src/money.ts",
   ],
   format: ["esm"],
   target: "es2020",
